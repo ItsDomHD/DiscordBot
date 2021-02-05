@@ -104,7 +104,7 @@ dist
 .tern-port
 
 #Folders
-HTTPRequests/
+httprequests/
 
 # Configs
 config.json
