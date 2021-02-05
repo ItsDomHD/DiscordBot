@@ -103,8 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-#Folders
-httprequests/
-
 # Configs
 config.json
