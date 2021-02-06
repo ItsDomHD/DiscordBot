@@ -1,30 +1,30 @@
 const Discord = require('discord.js');
 const https = require('https');
 
-    let cmdInfo = [];
+let cmdInfo = [];
 
-    const options = {
-        hostname: 'discord.com',
-        path: '/api/v8/applications/806920983969660988/guilds/758996468534214667/commands',
-        headers: {
-            Authorization: require('../config.json').http
-        },
-        method: 'Get'
-    }
+const options = {
+    hostname: 'discord.com',
+    path: '/api/v8/applications/806920983969660988/guilds/758996468534214667/commands',
+    headers: {
+        Authorization: require('../config.json').http
+    },
+    method: 'Get'
+}
 
-    https.get(options, (response) => {
-        var result = ''
-        response.on('data', function (chunk) {
-            result += chunk;
-        });
+https.get(options, (response) => {
+    var result = ''
+    response.on('data', function (chunk) {
+        result += chunk;
+    });
 
-        response.on('end', function () {
-            obj=JSON.parse(result);
-            obj.forEach((item) => {
-                cmdInfo.push ('**' + item.name+ '**' + '  |  ' +  '`' + item.id + '`' + '\n' + item.description + '\n');
-            });
+    response.on('end', function () {
+        obj = JSON.parse(result);
+        obj.forEach((item) => {
+            cmdInfo.push('**' + item.name + '**' + '  |  ' + '`' + item.id + '`' + '\n' + item.description + '\n');
         });
     });
+});
 
 module.exports.run = async (Client, interaction) => {
 
