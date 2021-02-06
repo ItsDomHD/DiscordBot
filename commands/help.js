@@ -1,9 +1,7 @@
 const Discord = require('discord.js');
 const https = require('https');
 
-    let cmdName = [];
-    let cmdDesc = [];
-    let cmdID = [];
+    let cmdInfo = [];
 
     const options = {
         hostname: 'discord.com',
@@ -23,9 +21,7 @@ const https = require('https');
         response.on('end', function () {
             obj=JSON.parse(result);
             obj.forEach((item) => {
-                cmdName.push (item.name);
-                cmdDesc.push (item.description);
-                cmdID.push (item.id);
+                cmdInfo.push ('**' + item.name+ '**' + '  |  ' +  '`' + item.id + '`' + '\n' + item.description + '\n');
             });
         });
     });
@@ -34,9 +30,7 @@ module.exports.run = async (Client, interaction) => {
 
     const embed = new Discord.MessageEmbed()
         .setColor("RED")
-        .addField(`Command Name: `, cmdName)
-        .addField(`Command Description: `, cmdDesc)
-        .addField(`Command ID: `, cmdID)
+        .addField(`Command Name: `, cmdInfo)
         .setTimestamp();
 
     Client.api.interactions(interaction.id, interaction.token).callback.post({
@@ -56,6 +50,6 @@ module.exports.run = async (Client, interaction) => {
 
 module.exports.help = {
     name: 'help',
-    description: 'Shows a list of Commands, IDs and Descriptions',
+    description: 'Shows a list of commands and their ids',
     options: []
 };
