@@ -55,7 +55,7 @@ module.exports.run = async (Client, interaction) => {
 };
 
 module.exports.help = {
-    name: 'debug-help',
+    name: 'help',
     description: 'Shows a list of Commands, IDs and Descriptions',
     options: []
 };
