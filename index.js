@@ -8,7 +8,7 @@ Client.on('ready', () => {
         files.forEach(file => {
             if (!file.endsWith('.js')) return;
             let fileProp = require(`./commands/` + file)
-            Client.api.applications(Client.user.id).guilds(require('./config.json').testGuildID).commands.post({
+            Client.api.applications(Client.user.id).guilds('758996468534214667').commands.post({
                 data: {
                     name: fileProp.help.name,
                     description: fileProp.help.description,
