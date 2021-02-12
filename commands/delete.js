@@ -7,7 +7,7 @@ module.exports.run = async (Client, interaction, args) => {
 
     const options = {
         hostname: 'discord.com',
-        path: `/api/v8/applications/806920983969660988/guilds/758996468534214667/commands/` + encodeURI(cmdID),
+        path: `/api/v8/applications/806920983969660988/guilds/` + require('../config.json').guildsid + `/commands/` + encodeURI(cmdID),
         headers: {
             Authorization: require('../config.json').http
         },
