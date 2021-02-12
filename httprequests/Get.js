@@ -2,7 +2,7 @@ const https = require('https');
 
 const options = {
     hostname: 'discord.com',
-    path: '/api/v8/applications/806920983969660988/guilds/758996468534214667/commands',
+    path: '/api/v8/applications/806920983969660988/guilds/809725416540471296/commands',
     headers: {
         Authorization: require('../config.json').http
     },
