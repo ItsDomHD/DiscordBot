@@ -4,6 +4,10 @@ module.exports.run = async (Client, interaction) => {
 
     const args = {}
 
+    user = await Client.users.fetch(interaction.member.user.id);
+    dev = '214373781844525057';
+
+
     if (options) {
         for (const option of options) {
             const {name, value} = option
@@ -12,13 +16,12 @@ module.exports.run = async (Client, interaction) => {
     }
 
     for (const arg in args) {
-
-        const debugDB = require("../functions/debugDB")
-
-        debugDB.db()
-
         const value = args[arg]
-        if (value === "database") {
+        if (value === "database" && user.id === dev) {
+
+            const debugDB = require("../functions/debugDB")
+            debugDB.db()
+
             return Client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
                     type: 4,
@@ -27,10 +30,9 @@ module.exports.run = async (Client, interaction) => {
                     }
                 }
             });
-        } else if (value === "command") {
+        } else if (value === "command" && user.id === dev) {
 
             const debugCMD = require("../functions/debugCMD")
-
             debugCMD.cmd()
 
             return Client.api.interactions(interaction.id, interaction.token).callback.post({
@@ -38,6 +40,15 @@ module.exports.run = async (Client, interaction) => {
                     type: 4,
                     data: {
                         content: "Please check the console (Command Debug)"
+                    }
+                }
+            });
+        } else {
+            return Client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                    type: 4,
+                    data: {
+                        content: "You are not authorized to use this command!"
                     }
                 }
             });
