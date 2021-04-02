@@ -5,7 +5,7 @@ module.exports.run = async (Client, interaction) => {
     const args = {}
 
     user = await Client.users.fetch(interaction.member.user.id);
-    dev = '214373781844525057';
+    dev = require("../config.json").dev;
 
 
     if (options) {
