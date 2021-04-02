@@ -13,9 +13,9 @@ module.exports.run = async (Client, interaction, args) => {
 
     const embed = new Discord.MessageEmbed()
         .setColor("AQUA")
-        .setThumbnail(user.avatarURL({ dynamic: true }))
+        .setThumbnail(user.avatarURL({dynamic: true}))
         .addField(`User`, `${user.tag} (ID: ${user.id})`)
-        .addField(`Roles [${member.roles.cache.size -1}]`, roles)
+        .addField(`Roles [${member.roles.cache.size - 1}]`, roles)
         .setTimestamp();
 
     Client.api.interactions(interaction.id, interaction.token).callback.post({
@@ -24,11 +24,12 @@ module.exports.run = async (Client, interaction, args) => {
             data: await createAPIMessage(interaction, embed)
         }
     });
+
     async function createAPIMessage(interaction, content) {
         const apiMessage = await Discord.APIMessage.create(Client.channels.resolve(interaction.channel_id), content)
             .resolveData()
             .resolveFiles();
-        return { ...apiMessage.data, files: apiMessage.files };
+        return {...apiMessage.data, files: apiMessage.files};
     }
 };
 
