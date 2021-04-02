@@ -17,6 +17,7 @@ module.exports.run = async (Client, interaction) => {
 
     for (const arg in args) {
         const value = args[arg]
+
         if (value === "database" && user.id === dev) {
 
             const debugDB = require("../functions/debugDB")
